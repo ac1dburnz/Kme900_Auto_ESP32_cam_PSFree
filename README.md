@@ -1,3 +1,12 @@
+Flash cam Board
+
+https://dl.espressif.com/esp-at/firmwares/esp32/ESP32-MINI-1/ESP32-MINI-1-AT-V2.2.0.0.zip 
+
+esptool.py --chip auto --port /dev/cu.usbserial-110  --baud 115200 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 40m --flash_size 4MB 0x0 factory/factory_MINI-1.bin
+
+
+
+
 # Kme900_Auto_ESP32_S2
 Modded Kameleon Auto Lite for PS4 9.00fw to work with ESP32-S2 chips Using Stooged project: 
 
