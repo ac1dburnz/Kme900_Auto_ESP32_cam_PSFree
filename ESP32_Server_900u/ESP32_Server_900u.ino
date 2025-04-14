@@ -11,7 +11,7 @@
 #include "USBMSC.h"
 #include "exfathax.h"
 #elif defined(CONFIG_IDF_TARGET_ESP32)  // ESP32 BOARDS
-#define USBCONTROL false                // set to true if you are using usb control(wired up usb drive)
+#define USBCONTROL true                // set to true if you are using usb control(wired up usb drive)
 #define usbPin 4                        // set the pin you want to use for usb control
 #else
 #error "Selected board not supported"
@@ -22,7 +22,7 @@
                      // this is fairly stable but may fail which will require you to try and load the payload again.
 
                      // use SD Card [ true / false ]
-#define USESD false  // a FAT32 formatted SD Card will be used instead of the onboard flash for the storage. \
+#define USESD true  // a FAT32 formatted SD Card will be used instead of the onboard flash for the storage. \
                      // this requires a board with a sd card slot or a sd card connected.
 
                       // use FatFS not SPIFFS [ true / false ]
@@ -62,7 +62,7 @@ IPAddress Subnet_Mask(255, 255, 255, 0);
 
 //connect to wifi
 boolean connectWifi = false;
-String WIFI_SSID = "Home_WIFI";
+String WIFI_SSID = "enternetwork";
 String WIFI_PASS = "password";
 String WIFI_HOSTNAME = "ps4.local";
 
@@ -90,10 +90,10 @@ int TIME2SLEEP = 30;  // minutes
 #if USESD
 #include "SD.h"
 #include "SPI.h"
-#define SCK 12   // pins for sd card
-#define MISO 13  // these values are set for the LILYGO TTGO T8 ESP32-S2 board
-#define MOSI 11  // you may need to change these for other boards
-#define SS 10
+#define SCK 14    // VSPI_CLK
+#define MISO 2    // VSPI_MISO
+#define MOSI 15   // VSPI_MOSI
+#define SS 13     // CS pin for SD card
 #define FILESYS SD
 #else
 #if USEFAT
